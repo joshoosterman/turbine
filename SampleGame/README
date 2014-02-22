@@ -1,0 +1,2 @@
+LINUX NOTES:
+ - You must run the executable from inside the ../bin/ directory (most easily accomplished by cd ../bin; ../SampleGame/SampleGame)
