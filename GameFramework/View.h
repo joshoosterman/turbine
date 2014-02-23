@@ -1,6 +1,9 @@
 #ifndef _VIEW_H
 #define _VIEW_H
 
+#include "SFML/Graphics/RenderTarget.hpp"
+#include "SFML/Graphics/RenderTexture.hpp"
+#include "SFML/Graphics/RenderWindow.hpp"
 #include "Classes.h"
 
 namespace Turbine {
@@ -30,7 +33,7 @@ public:
 
 	static View *getCurrentView();
 	void setRenderTarget(sf::RenderWindow *renderTarget);
-	sf::RenderImage *getRenderTarget();
+	sf::RenderTarget *getRenderTarget();
 
 	bool enabled;
 
@@ -44,7 +47,7 @@ private:
 
 	Level *level;
 
-	sf::RenderImage *surface;
+	sf::RenderTarget *surface;
 	sf::RenderWindow *renderTarget;
 	sf::View *view;
 	static View *activeView;

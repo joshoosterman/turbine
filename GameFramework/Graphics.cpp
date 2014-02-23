@@ -2,9 +2,7 @@
 
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#include "SFML/OpenGl.hpp"
-
-#include "iostream"
+#include "SFML/OpenGL.hpp"
 
 #include "Graphics.h"
 #include "Game.h"
@@ -23,8 +21,8 @@ namespace Internal {
 SharedImage::SharedImage(std::string path, int arg)
 {
 	path = Game::getInstance().getResourcePath(path);
-	image.LoadFromFile(path);
-	image.CreateMaskFromColor(sf::Color(255, 0, 255));
+	image.loadFromFile(path);
+	image.createMaskFromColor(sf::Color(255, 0, 255));
 }
 
 SharedImage::~SharedImage() {}
@@ -32,7 +30,7 @@ SharedImage::~SharedImage() {}
 SharedImage::SharedImage(int width, int height)
 {
 	image = sf::Image();
-	image.Create(width, height, sf::Color(0,0,0,0));
+	image.create(width, height, sf::Color(0,0,0,0));
 }
 
 SharedSprite::SharedSprite(std::string path, int arg)
@@ -49,7 +47,7 @@ SharedSprite::SharedSprite(std::string path, int arg)
 SharedFont::SharedFont(std::string path, int arg)
 {
 	path = Game::getInstance().getResourcePath(path);
-	font.LoadFromFile(path);
+	font.loadFromFile(path);
 }
 }
 
@@ -118,7 +116,7 @@ Image::Image(const Image& other, Geom::BoundingBox area)
 	SharedImage *tmp = new SharedImage(area.right - area.left, area.bottom - area.top);
 	tmp->add();
 
-	tmp->image.Copy(((SharedImage *) other.img)->image, 0, 0, sf::IntRect(area.left, area.top, area.right, area.bottom));
+	tmp->image.copy(((SharedImage *) other.img)->image, 0, 0, sf::IntRect(area.left, area.top, area.right, area.bottom));
 	this->img = tmp;
 }
 
@@ -176,14 +174,20 @@ void Image::draw(Geom::Point position)
 	sf::RenderTarget *rw = View::getCurrentView()->getRenderTarget();
 	SharedImage *tmp = (SharedImage *) img;
 
-	sf::Image *im = &(tmp->image);
+	//sf::Image *im = &(tmp->image);
 
-	sf::Sprite sprite(tmp->image, sf::Vector2f(position.x, position.y));
-	sprite.SetOrigin(origin.x, origin.y);
-	sprite.SetScale(scale.x, scale.y);
-	sprite.SetRotation(rotation);
-	sprite.SetColor(sf::Color(color.r, color.g, color.b, color.a));
-	rw->Draw(sprite);
+        // TODO(joshoosterman): Probably very inefficient?
+	// figure out what 'Texture' is and how it relates to 'Image'.
+	sf::Texture t;
+	t.loadFromImage(tmp->image);
+
+	sf::Sprite sprite(t);//tmp->image);
+	sprite.setPosition(sf::Vector2f(position.x, position.y));
+	sprite.setOrigin(origin.x, origin.y);
+	sprite.setScale(scale.x, scale.y);
+	sprite.setRotation(rotation);
+	sprite.setColor(sf::Color(color.r, color.g, color.b, color.a));
+	rw->draw(sprite);
 }
 
 bool Image::isValid()
@@ -196,7 +200,7 @@ BoundingBox Image::getBBox()
 	SharedImage *tmp = (SharedImage *) img;
 	sf::Image *im = &(tmp->image);
 	Point origin = getOrigin();
-	return BoundingBox(-origin.x, im->GetWidth() - origin.x, -origin.y, im->GetHeight() - origin.y);
+	return BoundingBox(-origin.x, im->getSize().x - origin.x, -origin.y, im->getSize().y - origin.y);
 }
 
 void Image::drawOnto(Graphics::Image target, Geom::Point position)
@@ -206,17 +210,24 @@ void Image::drawOnto(Graphics::Image target, Geom::Point position)
 	SharedImage *tmp2 = (SharedImage *) this->img;
 	sf::Image *s2 = &(tmp2->image);
 
-	sf::RenderImage img;
-	img.Create(s1->GetWidth(), s1->GetHeight());
-	img.Clear(sf::Color(255, 255, 255, 0));
+	sf::RenderTexture rt;
+	rt.create(s1->getSize().x, s1->getSize().y); // overload?
+	rt.clear(sf::Color(255, 255, 255, 0));
 
-	sf::Sprite sp1(*s1);
-	sf::Sprite sp2(*s2, sf::Vector2f(position.x - this->origin.x, position.y - this->origin.y));
-	img.Draw(sp1);
-	img.Draw(sp2);
-	img.Display();
+	// slow!
+	sf::Texture t1;
+	t1.loadFromImage(*s1);
+	sf::Texture t2;
+	t2.loadFromImage(*s2);
 
-	const sf::Image& result = img.GetImage();
+	sf::Sprite sp1(t1);
+	sf::Sprite sp2(t2);
+	sp2.setPosition(sf::Vector2f(position.x - this->origin.x, position.y - this->origin.y));
+	rt.draw(sp1);
+	rt.draw(sp2);
+	rt.display();
+
+	const sf::Image result = rt.getTexture().copyToImage();
 	tmp1->image = sf::Image(result);
 }
 
@@ -283,12 +294,12 @@ void Font::draw(std::string txt, Geom::Point position)
 	SharedFont *tmp = (SharedFont *) fnt;
 
 	sf::Text text(sf::String(txt), tmp->font, this->size);
-	text.SetPosition(position.x, position.y);
-	text.SetOrigin(origin.x, origin.y);
-	text.SetScale(scale.x, scale.y);
-	text.SetRotation(rotation);
-	text.SetColor(sf::Color(color.r, color.g, color.b, color.a));
-	rw->Draw(text);
+	text.setPosition(position.x, position.y);
+	text.setOrigin(origin.x, origin.y);
+	text.setScale(scale.x, scale.y);
+	text.setRotation(rotation);
+	text.setColor(sf::Color(color.r, color.g, color.b, color.a));
+	rw->draw(text);
 }
 
 Sprite::Sprite()
@@ -393,12 +404,13 @@ BoundingBox Sprite::getBBox()
 
 void drawLine(Geom::Point p1, Geom::Point p2, Color col)
 {
-	void *target = View::getCurrentView()->getRenderTarget();
+	return;
+	/*void *target = View::getCurrentView()->getRenderTarget();
 	sf::RenderTarget *rw = (sf::RenderTarget *) target;
 
 	sf::Color c(col.r, col.g, col.b, col.a);
 	sf::Shape shape = sf::Shape::Line(p1.x, p1.y, p2.x, p2.y, 1.0, c);
-	rw->Draw(shape);
+	rw->Draw(shape);*/
 }
 
 void drawRectangle(Geom::BoundingBox bbox, Color col, bool outline)
@@ -407,10 +419,14 @@ void drawRectangle(Geom::BoundingBox bbox, Color col, bool outline)
 	sf::RenderTarget *rw = (sf::RenderTarget *) target;
 
 	sf::Color c(col.r, col.g, col.b, col.a);
-	sf::Shape shape = sf::Shape::Rectangle(bbox.left, bbox.top, bbox.right - bbox.left, bbox.bottom - bbox.top, c);
-	shape.EnableFill(!outline);
-	shape.EnableOutline(outline);
-	rw->Draw(shape);
+	sf::RectangleShape shape;
+	shape.setPosition(bbox.left, bbox.top);
+	shape.setSize(sf::Vector2f(bbox.right - bbox.left, bbox.bottom - bbox.top));
+	shape.setFillColor(c);
+	shape.setOutlineColor(c);
+	//shape.EnableFill(!outline);
+	//shape.EnableOutline(outline);
+	rw->draw(shape);
 }
 }
 }

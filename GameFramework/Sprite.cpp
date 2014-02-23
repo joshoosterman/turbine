@@ -1,7 +1,11 @@
 #include "Sprite.h"
 #include "ImageUtil.h"
-#include "Resource.h"
+#include "Graphics.h"
+#include "Classes.h"
 
+//#include "Resource.h"
+
+/*
 using namespace Turbine::Geom;
 using namespace Turbine::Internal;
 
@@ -72,3 +76,4 @@ namespace Turbine
 		}
 	}
 }
+*/

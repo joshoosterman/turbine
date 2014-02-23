@@ -5,9 +5,11 @@
 #include <map>
 #include <set>
 
+#include "SFML/Window/Event.hpp"
+
 #include "Classes.h"
 #include "Geom.h"
-#include "Keycodes.h"
+#include "KeyCodes.h"
 #include "Object.h"
 
 namespace Turbine {
@@ -120,7 +122,7 @@ public:
 	void performCollisions();
 private:
 	Level *level;
-	std::map<int, std::set<DrawEventRegistration> > drawCallbacks;
+	std::map<int, std::vector<DrawEventRegistration> > drawCallbacks;
 	std::set<StepEventRegistration> beginStepCallbacks;
 	std::set<StepEventRegistration> stepCallbacks;
 	std::set<StepEventRegistration> endStepCallbacks;

@@ -3,8 +3,11 @@
 
 #include <string>
 
+#include "SFML/Graphics/RenderWindow.hpp"
+
 #include "Classes.h"
 #include "Geom.h"
+
 
 namespace Turbine {
 	

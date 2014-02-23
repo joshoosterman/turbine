@@ -1,9 +1,12 @@
 #ifndef KEYCODES_H
 #define KEYCODES_H
 
+#include "SFML/System.hpp"
+
 namespace Turbine {
 namespace Input {
 
+	/*
 enum KeyCode {
 	A = 'a',
 	B = 'b',
@@ -109,6 +112,7 @@ enum KeyCode {
 
 	Count // For internal use
 };
+*/
 
 enum EventType {
 	Closed,

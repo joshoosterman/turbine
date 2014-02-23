@@ -9,6 +9,10 @@
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
+
+// TODO(joshoosterman): We shouldn't need these any more, SFML2 has Vector classes.
+
+
 namespace Turbine {
 namespace Geom {
 

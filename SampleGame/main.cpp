@@ -1,10 +1,8 @@
 #include "Sample.h"
 
-int main(int argc, char* args[])
-{
+int main(int argc, char* args[]) {
 	Window window("GameFramework Feature Samples", Geom::Size(400, 400));
 	Game game(window);
-
 	DemoLevel1 level1;
 	DemoLevel2 level2;
 	DemoLevel3 level3;
@@ -29,7 +27,7 @@ int main(int argc, char* args[])
 	level1.previous = &level7;
 
 	level1.doInit();
-    game.run(level1);
+    	game.run(level1);
 
     return 0;
 }

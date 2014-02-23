@@ -1,6 +1,11 @@
+#include "KeyCodes.h"
+#include "SFML/Window/Keyboard.hpp"
+
 #include "Sample.h"
 
-DemoLevel::DemoLevel(std::string text, int id, int background)
+#include "EventManager.h"
+
+DemoLevel::DemoLevel(std::string text, int id, int background) : Level()
 {
 	this->text = text;
 	this->id = id;
@@ -38,7 +43,7 @@ void Background::init()
 {
 	registerDrawEvent(&Background::draw, 100);
 	registerStepEvent(&Background::step);
-	registerMouseEvent(&Background::click, Input::EventType::MouseButtonReleased);
+	registerMouseEvent(&Background::click, Input::MouseButtonReleased);
 }
 
 void Background::click(Object *me, Input::MouseEvent ev)
@@ -96,13 +101,13 @@ void LevelLabel::keydown(Object *me, Input::KeyEvent ev)
 	LevelLabel *self = (LevelLabel*) me;
 
 	switch(ev.key) {
-		case Input::Left:
+		case sf::Keyboard::Left:
 			if(self->dlevel->previous != NULL) {
 				self->dlevel->previous->doInit();
 				Game::getInstance().setActiveLevel(*self->dlevel->previous);
 			}
 			break;
-		case Input::Right:
+		case sf::Keyboard::Right:
 			if(self->dlevel->next != NULL) {
 				self->dlevel->next->doInit();
 				Game::getInstance().setActiveLevel(*self->dlevel->next);

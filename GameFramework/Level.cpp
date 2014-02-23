@@ -14,21 +14,46 @@ namespace Turbine {
 
 Level::Level()
 {
-	Level(Size(1000, 1000));
+	//this->Init(Size(1000, 1000));
+	Size size(1000, 1000);
+
+	this->size = size;
+	this->eventManager = new EventManager(this);
+	this->game = &Game::getInstance();
+	this->gameObjects = new BasicSpatialObjectSet();
+	View *view = new View(Geom::Point(0, 0), Geom::Vector(800, 600));
+	view->setEnabled(true);
+
+	addView(view);
+
 }
 
 Level::Level(Size size)
+{
+
+	this->size = size;
+	this->eventManager = new EventManager(this);
+	this->game = &Game::getInstance();
+	this->gameObjects = new BasicSpatialObjectSet();
+	View *view = new View(Geom::Point(0, 0), Geom::Vector(800, 600));
+	view->setEnabled(true);
+
+	addView(view);
+
+}
+
+void Level::Init(Size size)
 {
 	this->size = size;
 	this->eventManager = new EventManager(this);
 	this->game = &Game::getInstance();
 	this->gameObjects = new BasicSpatialObjectSet();
-
 	View *view = new View(Geom::Point(0, 0), Geom::Vector(800, 600));
 	view->setEnabled(true);
 
 	addView(view);
 }
+
 
 Level::~Level()
 {

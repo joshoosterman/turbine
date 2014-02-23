@@ -1,7 +1,7 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
-#include "SFML/OpenGl.hpp"
+//#include "SFML/Window/OpenGL.hpp"
 
 #include "iostream"
 #include <sstream>
@@ -44,34 +44,34 @@ void Game::run(Level &level)
 	float secondsPerFrame = 1.0f / ((float) targetFPS);
 	sf::Clock AITimer;
 
-	while(window->getRenderTarget().IsOpened())
+	while(window->getRenderTarget().isOpen())
 	{
 		Level* level = activeLevel;
-		AITimer.Reset();
+		AITimer.restart();
 
 		sf::Event ev;
-		while(window->getRenderTarget().GetEvent(ev))
+		while(window->getRenderTarget().pollEvent(ev))
 		{
-			if (ev.Type == sf::Event::Closed) {
+			if (ev.type == sf::Event::Closed) {
 				return;
 			}
 			//TODO: Find a better way to filter for mouse/key events
-			else if(ev.Type == sf::Event::MouseButtonPressed || ev.Type == sf::Event::MouseButtonReleased) {
+			else if(ev.type == sf::Event::MouseButtonPressed || ev.type == sf::Event::MouseButtonReleased) {
 				 level->getEventManager()->performMouseEvents(ev);
-			} else if(ev.Type == sf::Event::KeyPressed || ev.Type == sf::Event::KeyReleased) {
+			} else if(ev.type == sf::Event::KeyPressed || ev.type == sf::Event::KeyReleased) {
 				 level->getEventManager()->performKeyboardEvents(ev);
 			}
 		}
-		window->getRenderTarget().Clear(sf::Color(0, 0, 0, 255));
+		window->getRenderTarget().clear(sf::Color(0, 0, 0, 255));
 
 		level->frame();
 
-		window->getRenderTarget().Display();
-		float secondsPassed = AITimer.GetElapsedTime();
+		window->getRenderTarget().display();
+		float secondsPassed = AITimer.getElapsedTime().asSeconds();
 		float left = secondsPerFrame - secondsPassed;
 
 		if(left > 0) {
-			sf::Sleep(left);
+			sf::sleep(sf::seconds(left));
 		}
 	}
 }
@@ -137,7 +137,7 @@ void Window::initWindow()
 {
 	if(rWindow != NULL)
 	{
-		rWindow->Close();
+		rWindow->close();
 		delete rWindow;
 		rWindow = NULL;
 	}
@@ -148,8 +148,7 @@ void Window::initWindow()
 	{
 		throw EngineInitException("Could not create screen surface");
 	}
-
-	InputManager::getInstance()->control = (void *) &rWindow->GetInput();
+	//InputManager::getInstance()->control = (void *) &rWindow->getInput();
 }
 
 void Window::setFullScreen(bool fullScreen)
@@ -159,7 +158,8 @@ void Window::setFullScreen(bool fullScreen)
 /// Sets the visibility of the cursor, when positioned over the game window.
 void Window::setCursorVisible(bool cursorVisible)
 {
-	this->rWindow->ShowMouseCursor(cursorVisible);
+	this->rWindow->setMouseCursorVisible(cursorVisible);
+	//this->rWindow->showMouseCursor(cursorVisible);
 }
 
 sf::RenderWindow &Window::getRenderTarget()

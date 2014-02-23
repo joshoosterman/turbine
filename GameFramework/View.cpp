@@ -1,6 +1,6 @@
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#include "SFML/OpenGl.hpp"
+#include "SFML/OpenGL.hpp"
 
 #include "Game.h"
 #include "View.h"
@@ -33,7 +33,7 @@ View::View(Point screenPosition, Vector size)
 View::~View()
 {
 	delete (sf::View *) view;
-	delete (sf::RenderImage *) surface;
+	delete (sf::RenderTexture *) surface;
 	delete strat;
 }
 
@@ -102,12 +102,12 @@ void View::update()
 		delete (sf::View *) this->view;
 	}
 	if(this->surface != NULL) {
-		delete (sf::RenderImage *) this->surface;
+		delete (sf::RenderTexture *) this->surface;
 	}
 
 	sf::View *view = new sf::View();
-	sf::RenderImage *img = new sf::RenderImage();
-	img->Create((int) size.x, (int) size.y);
+	sf::RenderTexture *img = new sf::RenderTexture();
+	img->create((int) size.x, (int) size.y);
 
 	this->surface = img;
 	this->view = view;
@@ -124,25 +124,25 @@ void View::activate()
 	this->strat->move(temp);
 	position = temp - Geom::Point(0, 0);
 
-	view->SetCenter(position.x + size.x / 2, position.y + size.y / 2);
-	view->SetSize(size.x, size.y);
-	view->SetRotation(rotation);
+	view->setCenter(position.x + size.x / 2, position.y + size.y / 2);
+	view->setSize(size.x, size.y);
+	view->setRotation(rotation);
 
-	sf::RenderImage *rw = (sf::RenderImage *) this->surface;
-	rw->Clear(sf::Color(255, 255, 255));
-	rw->SetView(*view);
+	sf::RenderTexture *rw = (sf::RenderTexture *) this->surface;
+	rw->clear(sf::Color(255, 255, 255));
+	rw->setView(*view);
 	activeView = this;
 }
 
 void View::finish()
 {
-	sf::RenderImage *img = (sf::RenderImage *) this->surface;
+	sf::RenderTexture *img = (sf::RenderTexture *) this->surface;
 	sf::RenderWindow *rw = (sf::RenderWindow *) this->renderTarget;
 
-	img->Display();
-	sf::Sprite s(img->GetImage());
-	s.SetPosition(this->screenPosition.x, this->screenPosition.y);
-	rw->Draw(s);
+	img->display();
+	sf::Sprite s(img->getTexture());
+	s.setPosition(this->screenPosition.x, this->screenPosition.y);
+	rw->draw(s);
 }
 
 void View::setRenderTarget(sf::RenderWindow *renderTarget)
@@ -150,7 +150,7 @@ void View::setRenderTarget(sf::RenderWindow *renderTarget)
 	this->renderTarget = renderTarget;
 }
 
-sf::RenderImage *View::getRenderTarget()
+sf::RenderTarget *View::getRenderTarget()
 {
 	return this->surface;
 }

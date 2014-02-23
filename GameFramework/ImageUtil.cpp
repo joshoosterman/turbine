@@ -2,7 +2,7 @@
 
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#include "SFML/OpenGl.hpp"
+#include "SFML/OpenGL.hpp"
 
 #include "Graphics.h"
 #include "ResourceCache.h"
@@ -39,11 +39,11 @@ int getDirIndex(int x, int y) {
 
 bool pixelIsTransparent(sf::Image *surface, int x , int y)
 {
-	if(x < 0 || x >= surface->GetWidth() || y < 0 || y >= surface->GetHeight()) {
+	if(x < 0 || x >= surface->getSize().x || y < 0 || y >= surface->getSize().y) {
 		return true;
 	}
 
-	sf::Color col = surface->GetPixel(x, y);
+	sf::Color col = surface->getPixel(x, y);
 	return col.a == 0;
 }
 
@@ -61,8 +61,8 @@ bool ImageUtil::collision(Image im1, Point p1, Image im2, Point p2, Vector *outN
 
 	p1 = p1 - (im1.getOrigin() - Point(0,0));
 	p2 = p2 - (im2.getOrigin() - Point(0,0));
-	BoundingBox bb1 = BoundingBox(p1.x, p1.x + s1->GetWidth(), p1.y, p1.y + s1->GetHeight());
-	BoundingBox bb2 = BoundingBox(p2.x, p2.x + s2->GetWidth(), p2.y, p2.y + s2->GetHeight());
+	BoundingBox bb1 = BoundingBox(p1.x, p1.x + s1->getSize().x, p1.y, p1.y + s1->getSize().y);
+	BoundingBox bb2 = BoundingBox(p2.x, p2.x + s2->getSize().x, p2.y, p2.y + s2->getSize().y);
 	BoundingBox intersect = bb1.intersect(bb2);
 
 	bool collides = false;
@@ -91,7 +91,7 @@ bool ImageUtil::collision(Image im1, Point p1, Image im2, Point p2, Vector *outN
 		// 2. move towards mask1 as far as possible, without exiting mask2
 		// 3. approximate the slope of the edge
 
-		Point s1cent((p1.x * 2 + s1->GetWidth()) / 2.0f, (p1.y * 2 + s1->GetHeight()) / 2.0f);
+		Point s1cent((p1.x * 2 + s1->getSize().x) / 2.0f, (p1.y * 2 + s1->getSize().y) / 2.0f);
 		//Point s1cent = p1;
 		//Point s2cent((p2.x + s2->w) / 2.0, (p2.y + s2->h) / 2.0);
 

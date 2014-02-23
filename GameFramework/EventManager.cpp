@@ -21,7 +21,7 @@ void MouseEventRegistration::operator()(sf::Event e) const {
 
 void KeyboardEventRegistration::operator()(sf::Event e) const {
 	KeyEvent ev;
-	ev.key = (Input::KeyCode)((int) e.Key.Code);
+	ev.key = e.key.code;//(Input::KeyCode)((int) e.key.code);
 	callback(object, ev);
 }
 
@@ -66,7 +66,7 @@ EventManager::EventManager(Level *level) {
 
 void EventManager::registerDrawEvent(Object *o, DrawCallback callback, int depth) {
 	DrawEventRegistration reg(o, callback);
-	drawCallbacks[-depth].insert(reg);
+	drawCallbacks[-depth].push_back(reg);
 }
 
 void EventManager::registerBeginStepEvent(Object *o, StepCallback callback) {
@@ -106,7 +106,7 @@ void EventManager::registerKeyboardEvent(Object *o, KeyboardCallback callback, E
 
 void EventManager::unregisterDrawEvent(Object *o, DrawCallback callback, int depth) {
 	DrawEventRegistration reg(o, callback);
-	drawCallbacks[-depth].erase(reg);
+	//drawCallbacks[-depth].erase(reg);
 }
 
 void EventManager::unregisterBeginStepEvent(Object *o, StepCallback callback) {
@@ -146,8 +146,8 @@ void EventManager::unregisterKeyboardEvent(Object *o, KeyboardCallback callback,
 
 
 
-typedef std::map<int,std::set<DrawEventRegistration> >::iterator DERmapiter;
-typedef std::set<DrawEventRegistration>::iterator DERiter;
+typedef std::map<int,std::vector<DrawEventRegistration> >::iterator DERmapiter;
+typedef std::vector<DrawEventRegistration>::iterator DERiter;
 
 void EventManager::performDraw() {
 	// This works because maps are sorted by key. Objects will be drawn in ascending order of depth.
@@ -181,7 +181,7 @@ typedef std::set<MouseEventRegistration>::iterator MERiter;
 
 void EventManager::performMouseEvents(sf::Event ev) {
 	for (MERmapiter it = globalMouseCallbacks.begin(); it != globalMouseCallbacks.end(); ++it) {
-		if (ev.Type == it->first) {
+		if (ev.type == it->first) {
 			for (MERiter it2 = it->second.begin(); it2 != it->second.end(); ++it2) {
 				(*it2)(ev);
 			}
@@ -191,7 +191,7 @@ void EventManager::performMouseEvents(sf::Event ev) {
 	Point p1 = InputManager::getInstance()->mouseGetWindowPosition();
 	// this could be done with a spatial index in future
 	for (MERmapiter it = mouseCallbacks.begin(); it != mouseCallbacks.end(); ++it) {
-		if (ev.Type == it->first) {
+		if (ev.type == it->first) {
 			for (MERiter it2 = it->second.begin(); it2 != it->second.end(); ++it2) {
 					// NOTE: This fixes a bug where
 					// the referenced object went out of scope before the function ran,
@@ -210,7 +210,7 @@ typedef std::set<KeyboardEventRegistration>::iterator KERiter;
 
 void EventManager::performKeyboardEvents(sf::Event ev) {
 	for (KERmapiter it = keyboardCallbacks.begin(); it != keyboardCallbacks.end(); ++it) {
-		if (ev.Type == it->first) {
+		if (ev.type == it->first) {
 			for (KERiter it2 = it->second.begin(); it2 != it->second.end(); ++it2) {
 				(*it2)(ev);
 			}

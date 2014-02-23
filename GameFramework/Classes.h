@@ -79,11 +79,12 @@ class PhysicsObject;
 }
 }
 
+/*
 namespace sf {
 	class RenderWindow;
-	class RenderImage;
 	class Event;
 	class View;
 }
+*/
 
-#endif _CLASSES_H
+#endif // _CLASSES_H

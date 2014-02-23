@@ -58,13 +58,11 @@ public:
 	}
 };
 
-DemoLevel1::DemoLevel1() : DemoLevel("Sprite Demo", 1, 2)
-{
-}
+
+DemoLevel1::DemoLevel1() : DemoLevel("Sprite Demo", 1, 2) {}
 
 void DemoLevel1::init()
 {
-	//new Vegetable(*this->level);
 
 	for(int i = 0; i < 8; i++) {
 		addObject(new Smiley1(i % 2 + 1, i * 45));

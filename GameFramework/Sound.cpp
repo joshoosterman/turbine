@@ -19,14 +19,14 @@ SharedSound::SharedSound(std::string path, int arg)
 {
 	path = Game::getInstance().getResourcePath(path);
 	sf::SoundBuffer buff;
-	buff.LoadFromFile(path);
+	buff.loadFromFile(path);
 	sound = sf::Sound(buff);
 }
 
 SharedMusic::SharedMusic(std::string path, int arg)
 {
 	path = Game::getInstance().getResourcePath(path);
-	music.OpenFromFile(path);
+	music.openFromFile(path);
 }
 }
 

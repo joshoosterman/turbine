@@ -4,6 +4,7 @@
 #include "Classes.h"
 #include "InputManager.h"
 #include "Graphics.h"
+#include "KeyCodes.h"
 
 namespace Turbine {
 
@@ -16,7 +17,7 @@ typedef void (*KeyboardCallback)(Object *, Input::KeyEvent);
 
 class Object {
 private:
-	friend Level;
+	//TODO friend Level;
 	bool hasInit;
 
 protected:
@@ -37,8 +38,8 @@ protected:
 	void unregisterKeyboardEvent(KeyboardCallback, Input::EventType);
 
 	void checkInLevel();
-	Level *level;
 public:
+	Level *level;
 	virtual ~Object() {};
 	virtual void destroy();
 	virtual void init() = 0;

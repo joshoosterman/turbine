@@ -1,6 +1,8 @@
 #include "MovementStrategy.h"
 #include "InputManager.h"
 #include "Object.h"
+#include "SFML/Window/Keyboard.hpp"
+
 
 namespace Turbine {
 namespace Extras {
@@ -14,16 +16,16 @@ void KeyboardMovementStrategy::move(Geom::Point &position)
 {
 	Geom::Vector motion(0, 0);
 
-	if(Input::InputManager::getInstance()->keyDown(Input::Left)){
+	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Left)){
 		motion = motion + Geom::Vector(-1, 0);
 	}
-	if(Input::InputManager::getInstance()->keyDown(Input::Right)){
+	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Right)){
 		motion = motion + Geom::Vector(1, 0);
 	}
-	if(Input::InputManager::getInstance()->keyDown(Input::Up)){
+	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Up)){
 		motion = motion + Geom::Vector(0, -1);
 	}
-	if(Input::InputManager::getInstance()->keyDown(Input::Down)){
+	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Down)){
 		motion = motion + Geom::Vector(0, 1);
 	}
 

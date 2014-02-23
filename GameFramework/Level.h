@@ -19,6 +19,7 @@ public:
 	/// Constructor
 	Level();
 	Level(Geom::Size size);
+	void Init(Geom::Size size);
 
 	/// Destructor
 	~Level();
@@ -67,16 +68,18 @@ public:
 	/// to register events.
 	Internal::EventManager *getEventManager();
 
+	void frame();
+protected://///
+	Internal::EventManager *eventManager;
 private:
 
 		/// Executes a frame of the game, calling all events and rendering
 	/// to the screen
-	 friend Game void frame();
+	//TODO(joshoosterman) friend Game void frame();
 
 	std::vector<View *> views;
 	std::set<Object *> objects;
 	ISpatialObjectSet *gameObjects;
-	Internal::EventManager *eventManager;
 	Game *game;
 	std::queue<Object *> garbage;
 	Geom::Size size;

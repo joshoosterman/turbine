@@ -2,7 +2,7 @@
 #define CONTROLMANAGER_H
 
 #include "Classes.h"
-#include "KeyCodes.h"
+#include "SFML/Window/Keyboard.hpp"
 
 typedef unsigned char uint8_t;
 typedef uint8_t Uint8;
@@ -15,9 +15,9 @@ class InputManager {
 public:
 	static InputManager *getInstance();
 
-	bool keyDown(KeyCode key);
-	bool keyPressed(KeyCode key);
-	bool keyReleased(KeyCode key);
+	bool keyDown(sf::Keyboard::Key key);
+	bool keyPressed(sf::Keyboard::Key key);
+	bool keyReleased(sf::Keyboard::Key key);
 
 	Geom::Point mouseGetWindowPosition();
 	Geom::Point mouseGetViewPosition(View *view);
@@ -26,12 +26,12 @@ public:
 	bool mouseGetRightButtonDown();
 
 	static InputManager *instance;
-	void *control;
+	//void *control;
 };
 
 struct KeyEvent {
 	KeyEvent() {}
-	KeyCode key;
+	sf::Keyboard::Key key;
 };
 
 struct MouseEvent {
