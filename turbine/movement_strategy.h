@@ -1,8 +1,8 @@
 #ifndef _MOVESRAT_H
 #define _MOVESTRAT_H
 
-#include "Classes.h"
-#include "Geom.h"
+#include "classes.h"
+#include "turbine/geom.h"
 
 namespace Turbine {
 namespace Extras {

@@ -7,10 +7,10 @@
 
 #include "SFML/Window/Event.hpp"
 
-#include "Classes.h"
-#include "Geom.h"
-#include "KeyCodes.h"
-#include "Object.h"
+#include "classes.h"
+#include "turbine/geom.h"
+#include "turbine/key_codes.h"
+#include "turbine/object.h"
 
 namespace Turbine {
 namespace Internal {

@@ -1,17 +1,16 @@
+#include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
-//#include "SFML/Window/OpenGL.hpp"
 
-#include "iostream"
+#include <iostream>
 #include <sstream>
 
-#include "Game.h"
-#include "Window.h"
-#include "Level.h"
-#include "Exceptions.h"
-#include "InputManager.h"
-#include "EventManager.h"
+#include "turbine/event_manager.h"
+#include "turbine/exceptions.h"
+#include "turbine/game.h"
+#include "turbine/input_manager.h"
+#include "turbine/level.h"
+#include "turbine/window.h"
 
 using namespace Turbine::Geom;
 using namespace Turbine::Input;

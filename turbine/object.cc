@@ -1,10 +1,10 @@
-#include "Object.h"
-#include "Exceptions.h"
-#include "ImageUtil.h"
-#include "Level.h"
-#include "EventManager.h"
-#include "View.h"
-#include "Geom.h"
+#include "turbine/object.h"
+#include "turbine/exceptions.h"
+#include "turbine/image_util.h"
+#include "turbine/level.h"
+#include "turbine/event_manager.h"
+#include "turbine/view.h"
+#include "turbine/geom.h"
 
 using namespace Turbine;
 using namespace Turbine::Input;

@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "Classes.h"
-#include "Geom.h"
+#include "classes.h"
+#include "turbine/geom.h"
 
 namespace Turbine {
 

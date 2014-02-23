@@ -1,10 +1,10 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 
-#include "Geom.h"
-#include "InputManager.h"
-#include "Exceptions.h"
-#include "View.h"
+#include "turbine/exceptions.h"
+#include "turbine/geom.h"
+#include "turbine/input_manager.h"
+#include "turbine/view.h"
 
 using namespace Turbine::Geom;
 

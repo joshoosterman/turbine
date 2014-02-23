@@ -1,14 +1,14 @@
 #include <assert.h>
 
-#include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 #include "SFML/OpenGL.hpp"
+#include "SFML/System.hpp"
 
-#include "Graphics.h"
-#include "ResourceCache.h"
-#include "Exceptions.h"
-#include "Geom.h"
-#include "ImageUtil.h"
+#include "turbine/exceptions.h"
+#include "turbine/geom.h"
+#include "turbine/graphics.h"
+#include "turbine/image_util.h"
+#include "turbine/resource_cache.h"
 
 using namespace Turbine::Graphics;
 using namespace Turbine::Geom;

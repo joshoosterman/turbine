@@ -1,3 +1,9 @@
+# Turbine
+*.o
+*.a
+SampleGame/sample_game
+
+
 #################
 ## Eclipse
 #################

@@ -5,8 +5,8 @@
 
 #include "SFML/Graphics/RenderWindow.hpp"
 
-#include "Classes.h"
-#include "Geom.h"
+#include "turbine/classes.h"
+#include "turbine/geom.h"
 
 
 namespace Turbine {

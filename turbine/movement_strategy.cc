@@ -1,6 +1,6 @@
-#include "MovementStrategy.h"
-#include "InputManager.h"
-#include "Object.h"
+#include "turbine/movement_strategy.h"
+#include "turbine/input_manager.h"
+#include "turbine/object.h"
 #include "SFML/Window/Keyboard.hpp"
 
 

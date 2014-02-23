@@ -1,7 +1,7 @@
 #ifndef _RTREE_H
 #define _RTREE_H
 
-#include "SpatialObjectSet.h"
+#include "turbine/spatial_object_set.h"
 #include <set>
 #include <vector>
 

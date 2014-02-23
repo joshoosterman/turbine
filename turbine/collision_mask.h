@@ -1,8 +1,8 @@
 #ifndef _COLLISIONMASK_H
 #define _COLLISIONMASK_H
 
-#include "Geom.h"
-#include "Object.h"
+#include "turbine/geom.h"
+#include "turbine/object.h"
 
 using namespace Turbine;
 using namespace Turbine::Geom;

@@ -1,8 +1,8 @@
 #ifndef _TILECONTROL_H_
 #define _TILECONTROL_H_
 
-#include "Classes.h"
-#include "Object.h"
+#include "classes.h"
+#include "turbine/object.h"
 
 namespace Turbine {
 namespace Extras {

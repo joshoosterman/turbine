@@ -1,7 +1,7 @@
 #ifndef CONTROLMANAGER_H
 #define CONTROLMANAGER_H
 
-#include "Classes.h"
+#include "classes.h"
 #include "SFML/Window/Keyboard.hpp"
 
 typedef unsigned char uint8_t;

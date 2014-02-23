@@ -1,4 +1,4 @@
-#include "Sample.h"
+#include "sample_game/sample.h"
 #include "math.h"
 
 #define PI 3.14159265

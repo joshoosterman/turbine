@@ -1,11 +1,11 @@
-#include "Game.h"
-#include "Level.h"
-#include "Exceptions.h"
-#include "EventManager.h"
-#include "View.h"
-#include "RTree.h"
-#include "Object.h"
-#include "Window.h"
+#include "turbine/event_manager.h"
+#include "turbine/exceptions.h"
+#include "turbine/game.h"
+#include "turbine/level.h"
+#include "turbine/object.h"
+#include "turbine/rtree.h"
+#include "turbine/view.h"
+#include "turbine/window.h"
 
 using namespace Turbine::Internal;
 using namespace Turbine::Geom;

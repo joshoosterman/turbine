@@ -3,11 +3,11 @@
 #include "SFML/System.hpp"
 #include "SFML/Audio.hpp"
 
-#include "Sound.h"
-#include "ResourceCache.h"
-#include "Exceptions.h"
-#include "Geom.h"
-#include "Game.h"
+#include "turbine/exceptions.h"
+#include "turbine/game.h"
+#include "turbine/geom.h"
+#include "turbine/resource_cache.h"
+#include "turbine/sound.h"
 
 using namespace Turbine::Internal;
 using namespace Turbine::Geom;

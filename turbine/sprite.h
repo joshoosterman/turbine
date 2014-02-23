@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Geom.h"
+#include "turbine/geom.h"
 
 //namespace Turbine
 //{

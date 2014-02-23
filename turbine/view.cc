@@ -1,12 +1,12 @@
-#include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 #include "SFML/OpenGL.hpp"
+#include "SFML/System.hpp"
 
-#include "Game.h"
-#include "View.h"
-#include "ResourceCache.h"
-#include "Level.h"
-#include "MovementStrategy.h"
+#include "turbine/game.h"
+#include "turbine/level.h"
+#include "turbine/movement_strategy.h"
+#include "turbine/resource_cache.h"
+#include "turbine/view.h"
 
 using namespace Turbine::Geom;
 using namespace Turbine::Internal;

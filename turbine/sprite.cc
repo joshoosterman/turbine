@@ -1,7 +1,7 @@
-#include "Sprite.h"
-#include "ImageUtil.h"
-#include "Graphics.h"
-#include "Classes.h"
+#include "turbine/sprite.h"
+#include "turbine/image_util.h"
+#include "turbine/graphics.h"
+#include "classes.h"
 
 //#include "Resource.h"
 

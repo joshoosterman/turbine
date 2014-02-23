@@ -1,4 +1,4 @@
-#include "Sample.h"
+#include "sample_game/sample.h"
 #include "math.h"
 
 class PhysicsBall : public PhysicsObject

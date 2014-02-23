@@ -1,6 +1,6 @@
 #include <math.h>
 
-#include "Geom.h"
+#include "turbine/geom.h"
 
 #define PI 3.14159265f
 #define PI180 0.01745327f

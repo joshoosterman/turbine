@@ -1,10 +1,10 @@
 #ifndef _OBJECT_H
 #define _OBJECT_H
 
-#include "Classes.h"
-#include "InputManager.h"
-#include "Graphics.h"
-#include "KeyCodes.h"
+#include "classes.h"
+#include "turbine/input_manager.h"
+#include "turbine/graphics.h"
+#include "turbine/key_codes.h"
 
 namespace Turbine {
 

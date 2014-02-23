@@ -1,19 +1,19 @@
 #ifndef _TURBINE_H
 #define _TURBINE_H
 
-#include "Game.h"
-#include "Window.h"
-#include "Level.h"
-#include "Geom.h"
-#include "Exceptions.h"
-#include "InputManager.h"
-#include "Object.h"
-#include "Physics.h"
-#include "Level.h"
-#include "Graphics.h"
-#include "Sound.h"
-#include "View.h"
-#include "MovementStrategy.h"
-#include "TileControl.h"
+#include "turbine/exceptions.h"
+#include "turbine/game.h"
+#include "turbine/geom.h"
+#include "turbine/graphics.h"
+#include "turbine/input_manager.h"
+#include "turbine/level.h"
+#include "turbine/level.h"
+#include "turbine/movement_strategy.h"
+#include "turbine/object.h"
+#include "turbine/physics.h"
+#include "turbine/sound.h"
+#include "turbine/tile_control.h"
+#include "turbine/view.h"
+#include "turbine/window.h"
 
 #endif

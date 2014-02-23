@@ -1,5 +1,5 @@
-#include "RTree.h"
-#include "Object.h"
+#include "rtree.h"
+#include "object.h"
 
 namespace Turbine {
 namespace Internal {

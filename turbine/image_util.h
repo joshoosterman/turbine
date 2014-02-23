@@ -1,7 +1,7 @@
 #ifndef _IMAGEUTIL_H
 #define _IMAGEUTIL_H
 
-#include "Classes.h"
+#include "classes.h"
 
 namespace Turbine {
 namespace Graphics {

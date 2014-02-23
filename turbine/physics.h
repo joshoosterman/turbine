@@ -3,8 +3,8 @@
 
 #include <cstdlib>
 
-#include "Classes.h"
-#include "Object.h"
+#include "classes.h"
+#include "turbine/object.h"
 
 using namespace Turbine::Geom;
 

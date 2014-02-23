@@ -1,12 +1,12 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 
-#include "EventManager.h"
-#include "Geom.h"
-#include "Game.h"
-#include "Level.h"
-#include "Object.h"
-#include "InputManager.h"
+#include "turbine/event_manager.h"
+#include "turbine/game.h"
+#include "turbine/geom.h"
+#include "turbine/input_manager.h"
+#include "turbine/level.h"
+#include "turbine/object.h"
 
 using namespace Turbine::Geom;
 using namespace Turbine::Input;

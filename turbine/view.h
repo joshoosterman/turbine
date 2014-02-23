@@ -4,7 +4,8 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 #include "SFML/Graphics/RenderTexture.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
-#include "Classes.h"
+
+#include "classes.h"
 
 namespace Turbine {
 

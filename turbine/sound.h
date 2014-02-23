@@ -5,7 +5,7 @@
 #include <map>
 #include <assert.h>
 
-#include "Classes.h"
+#include "classes.h"
 
 namespace Turbine {
 namespace Audio {

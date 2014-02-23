@@ -5,10 +5,10 @@
 #include <map>
 #include <assert.h>
 
-#include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
+#include "SFML/Graphics.hpp"
 
-#include "Classes.h"
+#include "turbine/classes.h"
 
 namespace Turbine {
 namespace Internal {

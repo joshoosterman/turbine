@@ -1,9 +1,9 @@
 #include <sstream>
 
-#include "TileControl.h"
-#include "Sprite.h"
-#include "View.h"
-#include "Exceptions.h"
+#include "turbine/exceptions.h"
+#include "turbine/sprite.h"
+#include "turbine/tile_control.h"
+#include "turbine/view.h"
 
 #define MIN(X,Y) ((X) < (Y) ? : (X) : (Y))
 
