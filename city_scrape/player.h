@@ -5,10 +5,10 @@
 #include "runner.h"
 
 class Player : public Runner {
-public:
-    Player(CityLevel& level);
-    virtual void Step();
-    bool shouldJump();
+ public:
+  Player(CityLevel &level);
+  virtual void Step();
+  bool shouldJump();
 };
 
 #endif

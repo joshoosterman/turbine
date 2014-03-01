@@ -1,60 +1,62 @@
-#ifndef _VIEW_H
-#define _VIEW_H
+// Copyright 2011
+
+#ifndef TURBINE_VIEW_H_
+#define TURBINE_VIEW_H_
 
 #include "SFML/Graphics/RenderTarget.hpp"
 #include "SFML/Graphics/RenderTexture.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 
-#include "classes.h"
+#include "turbine/classes.h"
 
-namespace Turbine {
+namespace turbine {
 
 /// Represents a viewport of a level to be rendered to the screen
 class View {
-public:
-	View(Geom::Point screenPosition, Geom::Vector size);
-	~View();
+ public:
+  View(geom::Point screenPosition, geom::Vector size);
+  ~View();
 
-	void setWindowPosition(Geom::Point p);
-	void setSize(Geom::Vector s);
-	void setPosition(Geom::Point p);
-	void setRotation(float rotation);
-	void setMovementStrategy(Extras::MovementStrategy *strat);
+  void setWindowPosition(geom::Point p);
+  void setSize(geom::Vector s);
+  void setPosition(geom::Point p);
+  void setRotation(float rotation);
+  void setMovementStrategy(extras::MovementStrategy *strat);
 
-	Geom::Point getWindowPosition();
-	Geom::Vector getSize();
-	Geom::Vector getPosition();
-	float getRotation();
+  geom::Point getWindowPosition();
+  geom::Vector getSize();
+  geom::Vector getPosition();
+  float getRotation();
 
-	void setEnabled(bool enabled);
+  void setEnabled(bool enabled);
 
-	void update();
-	void activate();
-	void finish();
+  void update();
+  void activate();
+  void finish();
 
-	static View *getCurrentView();
-	void setRenderTarget(sf::RenderWindow *renderTarget);
-	sf::RenderTarget *getRenderTarget();
+  static View *getCurrentView();
+  void setRenderTarget(sf::RenderWindow *renderTarget);
+  sf::RenderTarget *getRenderTarget();
 
-	bool enabled;
+  bool enabled;
 
-private:
-	Geom::Point screenPosition;
-	Geom::Vector position;
-	Geom::Vector size;
-	float rotation;
+ private:
+  geom::Point screenPosition;
+  geom::Vector position;
+  geom::Vector size;
+  float rotation;
 
-	bool needsUpdate;
+  bool needsUpdate;
 
-	Level *level;
+  Level *level;
 
-	sf::RenderTarget *surface;
-	sf::RenderWindow *renderTarget;
-	sf::View *view;
-	static View *activeView;
-	Extras::MovementStrategy *strat;
+  sf::RenderTarget *surface;
+  sf::RenderWindow *renderTarget;
+  sf::View *view;
+  static View *activeView;
+  extras::MovementStrategy *strat;
 };
 
-}
+}  // namespace turbine
 
-#endif
+#endif  // TURBINE_VIEW_H_

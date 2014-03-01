@@ -1,35 +1,31 @@
 #ifndef _PLAYER_H
 #define _PLAYER_H
 
-#include "Turbine.h"
-#include "Car.h"
+#include "turbine/turbine.h"
+#include "vegetables/car.h"
 
-using namespace Turbine;
-using namespace Turbine::Input;
-using namespace Turbine::Geom;
-using namespace Turbine::Audio;
+class Player : public turbine::SimpleGameObject {
+ public:
+  Player();
 
-class Player : public SimpleGameObject {
-public:
-	Player();
+  void setup();
+  void step();
+  void draw();
+  static void _collide(turbine::GameObject *me, turbine::GameObject *other,
+                       turbine::geom::Vector normal);
 
-	void setup();
-	void step();
-	void draw();
-	static void _collide(GameObject *me, GameObject *other, Vector normal);
+ private:
+  void collide(turbine::GameObject *other, turbine::geom::Vector normal);
 
-private:
-	void collide(GameObject *other, Vector normal);
+  void footMovement();
+  void carMovement();
 
-	void footMovement();
-	void carMovement();
+  bool inCar;
+  Car *car;
 
-	bool inCar;
-	Car *car;
-
-	Vector motion;
-	Sprite current;
-	Sprite up, down, left, right;
+  turbine::geom::Vector motion;
+  turbine::graphics::Sprite current;
+  turbine::graphics::Sprite up, down, left, right;
 };
 
 #endif

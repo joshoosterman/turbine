@@ -1,20 +1,18 @@
 #ifndef _BUILDING_H
 #define _BUILDING_H
 
-#include "Turbine.h"
+#include "turbine/turbine.h"
 
-using namespace Turbine;
+class Building : public turbine::SimpleGameObject {
+ public:
+  Building(turbine::geom::Point pos);
 
-class Building : public SimpleGameObject {
-public:
-	Building(Point pos);
+  void setup();
+  void draw();
 
-	void setup();
-	void draw();
-
-private:
-	Sprite sprite;
-	Image mask;
+ private:
+  turbine::graphics::Sprite sprite;
+  turbine::graphics::Image mask;
 };
 
 #endif

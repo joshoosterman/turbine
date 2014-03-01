@@ -1,2 +1,4 @@
+// Copyright 2011
+
 Tidy up code (braces, name capitals etc)
 Replace resource cache stuff with smart pointers

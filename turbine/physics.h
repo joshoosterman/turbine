@@ -1,46 +1,51 @@
-#ifndef _PHYSICS_H
-#define _PHYSICS_H
+// Copyright 2011
+
+#ifndef TURBINE_PHYSICS_H_
+#define TURBINE_PHYSICS_H_
 
 #include <cstdlib>
 
-#include "classes.h"
+#include "turbine/classes.h"
 #include "turbine/object.h"
 
-using namespace Turbine::Geom;
+namespace turbine {
+namespace physics {
 
-namespace Turbine {
-namespace Physics {
-
-/// A specialization of GameObject for objects with physical properties (mass, gravity, etc)
+/// A specialization of GameObject for objects with physical properties (mass,
+/// gravity, etc)
 class PhysicsObject : public GameObject {
-private:
-	float mass;
-	Geom::Vector velocity;
-	float massRadius;
-	float angularVelocity;
-	Vector localForces;
-protected:
-	void init();
-public:
-	PhysicsObject(float mass, float massradius, Vector gravity = Vector(0, 0));
+ private:
+  float mass;
+  geom::Vector velocity;
+  float massRadius;
+  float angularVelocity;
+  geom::Vector localForces;
 
-	bool fixed;
-	bool fixedRotational;
-	Vector gravity;
-	float getMass();
-	Vector getVelocity();
-	Vector getMomentum();
-	float getMassRadius();
-	float getRotationalInertia();
-	float getAngularVelocity();
-	float getAngularMomentum();
-	static void step(Object *me);
-	static void endstep(Object *me);
-	static void collide(GameObject *a, GameObject *b, Vector normal/*, Point collPoint*/);
-	void registerPhysicsEvents();
+ protected:
+  void init();
+
+ public:
+  PhysicsObject(float mass, float massradius,
+                geom::Vector gravity = geom::Vector(0, 0));
+
+  bool fixed;
+  bool fixedRotational;
+  geom::Vector gravity;
+  float getMass();
+  geom::Vector getVelocity();
+  geom::Vector getMomentum();
+  float getMassRadius();
+  float getRotationalInertia();
+  float getAngularVelocity();
+  float getAngularMomentum();
+  static void step(Object *me);
+  static void endstep(Object *me);
+  static void collide(GameObject *a, GameObject *b,
+                      geom::Vector normal /*, geom::Point collPoint*/);
+  void registerPhysicsEvents();
 };
 
-}
-}
+}  // namespace physics
+}  // namespace turbine
 
-#endif
+#endif  // TURBINE_PHYSICS_H_

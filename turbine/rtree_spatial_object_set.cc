@@ -1,16 +1,16 @@
-#include "turbine/rtree.h"
-#include "turbine/object.h"
+// Copyright 2011
 
 #include <algorithm>
 #include <vector>
 
+#include "turbine/rtree.h"
+#include "turbine/object.h"
+
 #define M 3
 #define INF 999999999
 
-using namespace Turbine::Geom;
-
-/*namespace Turbine {
-	namespace Internal {
+/*namespace turbine {
+	namespace internal {
 		struct Entry {
 			GameObject *obj;
 			int count;
@@ -58,7 +58,8 @@ using namespace Turbine::Geom;
 				for (int i = 0; i < N->count; i++) {
 					float area = N->children[i]->bbox().Area();
 					float inflatedarea = N->children[i]->bbox().ExpandToInclude(rect).Area();
-					if (inflatedarea - area < minChange || (inflatedarea - area == minChange && minArea < minArea)) {
+					if (inflatedarea - area < minChange || (inflatedarea - area == minChange &&
+minArea < minArea)) {
 						minChange = inflatedarea - area;
 						minArea = area;
 						min = N->children[i];
@@ -119,7 +120,8 @@ using namespace Turbine::Geom;
 			return res;
 		}
 
-		void RTreeSpatialObjectSet::Search(BoundingBox &r, Entry *T, std::set<GameObject *> &results) {
+		void RTreeSpatialObjectSet::Search(BoundingBox &r, Entry *T,
+std::set<GameObject *> &results) {
 			if (!T->leaf())
 				for (int i = 0; i < T->count; i++)
 					if (r.Intersects(T->children[i]->bbox()))

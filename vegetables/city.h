@@ -1,15 +1,16 @@
 #ifndef _CITY_H
 #define _CITY_H
 
-#include "Turbine.h"
-class City : public Level {
-public:
-	City(Turbine::Geom::Size size);
-	virtual ~City();
-    void init();
+#include "turbine/turbine.h"
 
-private:
-	friend class LevelLoader;
+class City : public turbine::Level {
+ public:
+  City(turbine::geom::Size size);
+  virtual ~City();
+  void init();
+
+ private:
+  friend class LevelLoader;
 };
 
 #endif

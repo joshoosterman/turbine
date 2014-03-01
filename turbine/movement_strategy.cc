@@ -1,58 +1,56 @@
+// Copyright 2011
+
 #include "turbine/movement_strategy.h"
 #include "turbine/input_manager.h"
 #include "turbine/object.h"
 #include "SFML/Window/Keyboard.hpp"
 
+namespace turbine {
+namespace extras {
 
-namespace Turbine {
-namespace Extras {
-
-KeyboardMovementStrategy::KeyboardMovementStrategy(float speed)
-{
-	this->speed = speed;
+KeyboardMovementStrategy::KeyboardMovementStrategy(float speed) {
+  this->speed = speed;
 }
 
-void KeyboardMovementStrategy::move(Geom::Point &position)
-{
-	Geom::Vector motion(0, 0);
+void KeyboardMovementStrategy::move(geom::Point *position) {
+  geom::Vector motion(0, 0);
 
-	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Left)){
-		motion = motion + Geom::Vector(-1, 0);
-	}
-	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Right)){
-		motion = motion + Geom::Vector(1, 0);
-	}
-	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Up)){
-		motion = motion + Geom::Vector(0, -1);
-	}
-	if(Input::InputManager::getInstance()->keyDown(sf::Keyboard::Down)){
-		motion = motion + Geom::Vector(0, 1);
-	}
+  if (input::InputManager::getInstance()->keyDown(sf::Keyboard::Left)) {
+    motion = motion + geom::Vector(-1, 0);
+  }
+  if (input::InputManager::getInstance()->keyDown(sf::Keyboard::Right)) {
+    motion = motion + geom::Vector(1, 0);
+  }
+  if (input::InputManager::getInstance()->keyDown(sf::Keyboard::Up)) {
+    motion = motion + geom::Vector(0, -1);
+  }
+  if (input::InputManager::getInstance()->keyDown(sf::Keyboard::Down)) {
+    motion = motion + geom::Vector(0, 1);
+  }
 
-	if(motion.getMagnitude() > 0) {
-		motion = motion.unit() * this->speed;
-	}
+  if (motion.getMagnitude() > 0) {
+    motion = motion.unit() * this->speed;
+  }
 
-	position = position + motion;
+  *position = *position + motion;
 }
 
-FixedPositionMovementStrategy::FixedPositionMovementStrategy(Geom::Point position)
-{
-	this->position = position;
+FixedPositionMovementStrategy::FixedPositionMovementStrategy(
+    geom::Point position) {
+  this->position = position;
 }
 
-void FixedPositionMovementStrategy::move(Geom::Point &position)
-{
-	position = this->position;
+void FixedPositionMovementStrategy::move(geom::Point *position) {
+  *position = this->position;
 }
 
-ObjectTrackingMovementStrategy::ObjectTrackingMovementStrategy(GameObject &object, Geom::Vector offset)
-: object(object), offset(offset) {}
+ObjectTrackingMovementStrategy::ObjectTrackingMovementStrategy(
+    const GameObject &object, geom::Vector offset)
+    : object(object), offset(offset) {}
 
-void ObjectTrackingMovementStrategy::move(Geom::Point &position)
-{
-	position = this->object.getLocation() + offset;
+void ObjectTrackingMovementStrategy::move(geom::Point *position) {
+  *position = this->object.getLocation() + offset;
 }
 
-}
-}
+}  // namespace extras
+}  // namespace turbine

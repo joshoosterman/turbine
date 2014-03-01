@@ -1,50 +1,52 @@
-#ifndef _RTREE_H
-#define _RTREE_H
+// Copyright 2011
 
-#include "turbine/spatial_object_set.h"
+#ifndef TURBINE_RTREE_H_
+#define TURBINE_RTREE_H_
+
 #include <set>
 #include <vector>
 
-using namespace Turbine::Geom;
+#include "turbine/spatial_object_set.h"
 
-namespace Turbine {
-namespace Internal {
+namespace turbine {
+namespace internal {
 
-class BasicSpatialObjectSet : public ISpatialObjectSet
-{
-public:
-	~BasicSpatialObjectSet();
+class BasicSpatialObjectSet : public ISpatialObjectSet {
+ public:
+  ~BasicSpatialObjectSet();
 
-	void insertObject(GameObject *o);
-	void removeObject(GameObject *o);
-	std::set<GameObject *> queryArea(BoundingBox b);
-private:
-	std::set<GameObject *> objects;
+  void insertObject(GameObject *o);
+  void removeObject(GameObject *o);
+  std::set<GameObject *> queryArea(geom::BoundingBox b);
+
+ private:
+  std::set<GameObject *> objects;
 };
 
 struct Entry;
-class RTreeSpatialObjectSet : public ISpatialObjectSet
-{
-public:
-	~RTreeSpatialObjectSet();
-	RTreeSpatialObjectSet();
+class RTreeSpatialObjectSet : public ISpatialObjectSet {
+ public:
+  ~RTreeSpatialObjectSet();
+  RTreeSpatialObjectSet();
 
-	void insertObject(GameObject *o);
-	void removeObject(GameObject *o);
-	std::set<GameObject *> queryArea(BoundingBox b);
-private:
-	Entry *root;
-	Entry *rootSplit;
+  void insertObject(GameObject *o);
+  void removeObject(GameObject *o);
+  std::set<GameObject *> queryArea(geom::BoundingBox b);
 
-	Entry *chooseLeaf(BoundingBox &rect);
-	void pickSeeds(Entry ** seed1, Entry ** seed2);
-	Entry *splitNode(Entry *L, Entry *E);
-	void adjustTree(Entry *L, Entry *LL);
-	void search(BoundingBox &r, Entry *T, std::set<GameObject *> &results);
-	Entry *findLeaf(GameObject *r, Entry *T);
-	void condenseTree(Entry *L);
+ private:
+  Entry *root;
+  Entry *rootSplit;
+
+  Entry *chooseLeaf(const geom::BoundingBox &rect);
+  void pickSeeds(Entry **seed1, Entry **seed2);
+  Entry *splitNode(Entry *L, Entry *E);
+  void adjustTree(Entry *L, Entry *LL);
+  void search(const geom::BoundingBox &r, Entry *T,
+              std::set<GameObject *> *results);
+  Entry *findLeaf(GameObject *r, Entry *T);
+  void condenseTree(Entry *L);
 };
-}
-}
+}  // namespace internal
+}  // namespace turbine
 
-#endif
+#endif  // TURBINE_RTREE_H_

@@ -1,14 +1,14 @@
 #ifndef _VEGETABLES_H
 #define _VEGETABLES_H
 
-#include "Turbine.h"
+#include "turbine/turbine.h"
 
-#include "Player.h"
-#include "Car.h"
-#include "Building.h"
-#include "City.h"
-#include "Vegetable.h"
-#include "LevelLoader.h"
+#include "vegetables/building.h"
+#include "vegetables/car.h"
+#include "vegetables/city.h"
+#include "vegetables/level_loader.h"
+#include "vegetables/player.h"
+#include "vegetables/vegetable.h"
 
 //#define SHOW_MASKS
 #endif

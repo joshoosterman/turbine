@@ -23,10 +23,10 @@ public:
 			shiftBack -= width;
 		}
 
-		Turbine::Geom::Point point(pX - shiftBack, pY - shiftUp);
+		Turbine::geom::Point point(pX - shiftBack, pY - shiftUp);
 
 		for(int i = 0; i < 800 + width;  i += width) {
-			image.draw(point + Turbine::Geom::Vector(i, 0));
+			image.draw(point + Turbine::geom::Vector(i, 0));
 		}
 	}
 };
@@ -42,10 +42,10 @@ CityLevel::CityLevel() : Turbine::Level(), lines() {
 
     Player *player = new Player(*this);
 
-    Turbine::Extras::MovementStrategy *strat =
-            new Turbine::Extras::ObjectTrackingMovementStrategy(*player, Turbine::Geom::Vector(-400, -200));
+    Turbine::extras::MovementStrategy *strat =
+            new Turbine::extras::ObjectTrackingMovementStrategy(*player, Turbine::geom::Vector(-400, -200));
 
-    this->GetView(0).setSize(Turbine::Geom::Vector(800, 400));
+    this->GetView(0).setSize(Turbine::geom::Vector(800, 400));
     this->GetView(0).setMovementStrategy(strat);
 }
 

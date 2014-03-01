@@ -1,21 +1,23 @@
 #ifndef _VEGETABLE_H
 #define _VEGETABLE_H
 
-#include "Turbine.h"
+#include "turbine/turbine.h"
 
-class Vegetable : public SimpleGameObject {
-public:
-	Vegetable(Point location);
+class Vegetable : public turbine::SimpleGameObject {
+ public:
+  Vegetable(turbine::geom::Point location);
 
-	void setup();
-    void step(Object *me);
-	void draw();
+  void setup();
+  void step(turbine::Object *me);
+  void draw();
 
-	static void collide(GameObject *me, GameObject *other, Geom::Vector normal);
-private:
-	Sprite sprite1, sprite2;
-	bool dead;
-	Sound death;
+  static void collide(turbine::GameObject *me, turbine::GameObject *other,
+                      turbine::geom::Vector normal);
+
+ private:
+  turbine::graphics::Sprite sprite1, sprite2;
+  bool dead;
+  turbine::audio::Sound death;
 };
 
 #endif

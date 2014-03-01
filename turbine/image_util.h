@@ -1,19 +1,23 @@
-#ifndef _IMAGEUTIL_H
-#define _IMAGEUTIL_H
+// Copyright 2011
 
-#include "classes.h"
+#ifndef TURBINE_IMAGE_UTIL_H_
+#define TURBINE_IMAGE_UTIL_H_
 
-namespace Turbine {
-namespace Graphics {
+#include "turbine/classes.h"
+
+namespace turbine {
+namespace graphics {
 
 /// A class that provides additional functions for image manipulation.
-class ImageUtil
-{
-public:
-	static bool collision(Graphics::Image im1, Geom::Point p1, Graphics::Image im2, Geom::Point p2, Geom::Vector *normal, Geom::Point *outCollisionPoint, int resolution = 4);
+class ImageUtil {
+ public:
+  static bool collision(graphics::Image im1, geom::Point p1,
+                        graphics::Image im2, geom::Point p2,
+                        geom::Vector *normal, geom::Point *outCollisionPoint,
+                        int resolution = 4);
 };
 
-}
-}
+}  // namespace graphics
+}  // namespace turbine
 
-#endif
+#endif  // TURBINE_IMAGE_UTIL_H_

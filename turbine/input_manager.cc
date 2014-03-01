@@ -1,3 +1,5 @@
+// Copyright 2011
+
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 
@@ -6,81 +8,52 @@
 #include "turbine/input_manager.h"
 #include "turbine/view.h"
 
-using namespace Turbine::Geom;
-
-namespace Turbine {
-namespace Input {
+namespace turbine {
+namespace input {
 
 InputManager *InputManager::instance = NULL;
 
-InputManager* InputManager::getInstance()
-{
-	if(instance == NULL)
-	{
-		instance = new InputManager();
-	}
+InputManager *InputManager::getInstance() {
+  if (instance == NULL) {
+    instance = new InputManager();
+  }
 
-	return instance;
+  return instance;
 }
 
-// TODO(joshoosterman): This module is pretty much redundant with SFML2 providing
-// static functions for checking keyboard & mouse state.
+// TODO(joshoosterman): This module is pretty much redundant with SFML2
+// providing.
 
-bool InputManager::keyDown(sf::Keyboard::Key key)
-{
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsKeyDown((sf::Key::Code) key);
-	return sf::Keyboard::isKeyPressed(key);
-}
+// Static functions for checking keyboard & mouse state.
 
-bool InputManager::keyPressed(sf::Keyboard::Key key)
-{
-	//todo
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsKeyDown((sf::Key::Code) key);
-	return sf::Keyboard::isKeyPressed(key);
+bool InputManager::keyDown(sf::Keyboard::Key key) {
+  return sf::Keyboard::isKeyPressed(key);
 }
 
-bool InputManager::keyReleased(sf::Keyboard::Key key)
-{
-	//todo
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsKeyDown((sf::Key::Code) key);
-	return sf::Keyboard::isKeyPressed(key);
+bool InputManager::keyPressed(sf::Keyboard::Key key) { return false; }
+
+bool InputManager::keyReleased(sf::Keyboard::Key key) { return false; }
+
+geom::Point InputManager::mouseGetViewPosition(View *view) {
+  return mouseGetWindowPosition() + view->getPosition();
 }
 
-Point InputManager::mouseGetViewPosition(View* view)
-{
-	return mouseGetWindowPosition() + view->getPosition();
+geom::Point InputManager::mouseGetWindowPosition() {
+  sf::Vector2i pos = sf::Mouse::getPosition();
+  return geom::Point(pos.x, pos.y);
 }
 
-Point InputManager::mouseGetWindowPosition()
-{
-	// TODO(joshoosterman)
-	//sf::Input *input = (sf::Input *) control;
-	sf::Vector2i pos = sf::Mouse::getPosition();
-	return Point(pos.x, pos.y);
+bool InputManager::mouseGetLeftButtonDown() {
+  return sf::Mouse::isButtonPressed(sf::Mouse::Left);
 }
 
-bool InputManager::mouseGetLeftButtonDown()
-{
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsMouseButtonDown(sf::Mouse::Left);
-	return sf::Mouse::isButtonPressed(sf::Mouse::Left);
+bool InputManager::mouseGetMiddleButtonDown() {
+  return sf::Mouse::isButtonPressed(sf::Mouse::Middle);
 }
 
-bool InputManager::mouseGetMiddleButtonDown()
-{
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsMouseButtonDown(sf::Mouse::Middle);
-	return sf::Mouse::isButtonPressed(sf::Mouse::Middle);
+bool InputManager::mouseGetRightButtonDown() {
+  return sf::Mouse::isButtonPressed(sf::Mouse::Right);
 }
 
-bool InputManager::mouseGetRightButtonDown()
-{
-	//sf::Input *input = (sf::Input *) control;
-	//return input->IsMouseButtonDown(sf::Mouse::Right);
-	return sf::Mouse::isButtonPressed(sf::Mouse::Right);
-}
-}
-}
+}  // namespace input
+}  // namespace turbine

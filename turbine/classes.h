@@ -1,9 +1,13 @@
-#ifndef _CLASSES_H
-#define _CLASSES_H
+// Copyright 2011
+
+#ifndef TURBINE_CLASSES_H_
+#define TURBINE_CLASSES_H_
 
 /// Forward decls for all classes
+// TODO(joshoosterman): Don't do this... Encourages use of pointers
+// over references.
 
-namespace Turbine {
+namespace turbine {
 class Game;
 class Window;
 class Level;
@@ -20,13 +24,12 @@ class ResourceNotFoundException;
 class SoundFailedException;
 class SoundInitException;
 
-
-namespace Audio {
+namespace audio {
 class Music;
 class Sound;
 }
 
-namespace Extras {
+namespace extras {
 class TerrainControl;
 class Tile;
 class TileControl;
@@ -36,14 +39,14 @@ class KeyboardMovementStrategy;
 class ObjectTrackingMovementStrategy;
 }
 
-namespace Geom {
+namespace geom {
 class Point;
 typedef Point Size;
 class Vector;
 class BoundingBox;
 }
 
-namespace Graphics {
+namespace graphics {
 struct Color;
 class Drawable;
 class Font;
@@ -51,13 +54,13 @@ class Image;
 class ImageUtil;
 class Sprite;
 }
-namespace Input {
+namespace input {
 class InputManager;
 struct KeyEvent;
 struct MouseEvent;
 }
 
-namespace Internal {
+namespace internal {
 class EventManager;
 class RTreeSpatialObjectSet;
 class BasicSpatialObjectSet;
@@ -72,19 +75,9 @@ class CollisionEventRegistration;
 class DrawEventRegistration;
 class KeyboardEventRegistration;
 class MouseEventRegistration;
-}
+}  // namespace internal
 
-namespace Physics {
-class PhysicsObject;
-}
-}
+namespace physics { class PhysicsObject; }
+}  // namespace turbine
 
-/*
-namespace sf {
-	class RenderWindow;
-	class Event;
-	class View;
-}
-*/
-
-#endif // _CLASSES_H
+#endif  // TURBINE_CLASSES_H__

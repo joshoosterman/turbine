@@ -12,7 +12,7 @@
 #include "level.h"
 
 using namespace Turbine;
-using namespace Turbine::Geom;
+using namespace Turbine::geom;
 using namespace Turbine::Input;
 using namespace Turbine::Graphics;
 using namespace Turbine::Audio;
@@ -21,7 +21,7 @@ using namespace Turbine::Physics;
 int main(int argc, char* args[])
 {
 	Game game;
-	game.SetSize(Turbine::Geom::Size(800, 400));
+	game.SetSize(Turbine::geom::Size(800, 400));
     game.SetCaption("SkyScrape");
 
 	CityLevel level;

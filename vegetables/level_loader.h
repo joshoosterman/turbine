@@ -2,8 +2,8 @@
 #define _LEVELLOADER_H
 
 class LevelLoader {
-public:
-	static City *load(std::string name);
+ public:
+  static City *load(std::string name);
 };
 
 #endif

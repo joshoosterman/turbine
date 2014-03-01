@@ -9,12 +9,13 @@
 using std::vector;
 
 class CityLevel : public Turbine::Level {
-public:
-	CityLevel();
-	vector<Line*> getLines();
-	void addLine(Line*);
-protected:
-    vector<Line*> lines;
+ public:
+  CityLevel();
+  vector<Line *> getLines();
+  void addLine(Line *);
+
+ protected:
+  vector<Line *> lines;
 };
 
 #endif

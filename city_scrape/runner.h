@@ -8,24 +8,25 @@
 using namespace Turbine;
 
 class Runner : public SimpleGameObject {
-public: // Should be protected, but cbf right now
-    Runner(CityLevel& level);
-    Graphics::Sprite sprRunning;
-    double xspeed, yspeed, runspeed;
-    double frame;
-    double jump_power;
-    Line* standingOn;
-    CityLevel& level;
-    virtual bool shouldJump() = 0;
-    void doStep(HorizontalLine* line);
-    Geom::Size size;
-public:
-    bool moveTo(Geom::Point new_loc);
-    void applyX();
-    void applyY();
+ public:  // Should be protected, but cbf right now
+  Runner(CityLevel &level);
+  Graphics::Sprite sprRunning;
+  double xspeed, yspeed, runspeed;
+  double frame;
+  double jump_power;
+  Line *standingOn;
+  CityLevel &level;
+  virtual bool shouldJump() = 0;
+  void doStep(HorizontalLine *line);
+  geom::Size size;
 
-    virtual void Step();
-    virtual void Draw();
+ public:
+  bool moveTo(geom::Point new_loc);
+  void applyX();
+  void applyY();
+
+  virtual void Step();
+  virtual void Draw();
 };
 
 #endif

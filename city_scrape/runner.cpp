@@ -18,7 +18,7 @@ void Runner::Step() {
         if (shouldJump() && yspeed < 0)
             yspeed -= 0.35;
         
-        Geom::Point new_location = location;
+        geom::Point new_location = location;
         new_location.x += xspeed;
         new_location.y += yspeed;
         
@@ -41,7 +41,7 @@ void Runner::applyY() {
     location.y += yspeed;
 }
 
-bool Runner::moveTo(Geom::Point new_location) {
+bool Runner::moveTo(geom::Point new_location) {
         bool hit = false;
         vector<Line*> lines = level.getLines();
         vector<Line*>::iterator it;
@@ -57,7 +57,7 @@ bool Runner::moveTo(Geom::Point new_location) {
 }
 
 void Runner::doStep(HorizontalLine* line) {
-    moveTo(Geom::Point(location.x + xspeed, location.y));
+    moveTo(geom::Point(location.x + xspeed, location.y));
     if (shouldJump()){
 		yspeed = -jump_power;
         standingOn = NULL;

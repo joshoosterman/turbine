@@ -1,3 +1,5 @@
+// Copyright 2011
+
 #include "GameFramework.h"
 
 #include <string>
